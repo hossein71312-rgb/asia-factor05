@@ -1,0 +1,44 @@
+{
+  "name": "asia-factor",
+  "productName": "AsiaFactor",
+  "version": "1.0.0",
+  "description": "آسیا فاکتور - نرم‌افزار صدور فاکتور",
+  "main": "main.js",
+  "author": "Asia Factor",
+  "scripts": {
+    "vendor": "node scripts/copy-vendor.js",
+    "start": "npm run vendor && electron .",
+    "build": "npm run vendor && electron-builder --win --x64"
+  },
+  "dependencies": {
+    "html2canvas": "1.4.1",
+    "jspdf": "2.5.1"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.asiafactor.app",
+    "productName": "AsiaFactor",
+    "directories": { "output": "dist", "buildResources": "build" },
+    "files": ["main.js", "app/**/*", "build/icon.png"],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "آسیا فاکتور",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico"
+    },
+    "artifactName": "AsiaFactor-${version}-${target}.${ext}"
+  }
+}
